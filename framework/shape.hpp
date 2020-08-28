@@ -1,19 +1,20 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
 
+#include <memory>
 #include <string>
 #include <iostream>
-#include "color.hpp"
+#include "material.hpp"
 
 class Shape
 {
   private:
   std::string name_;
-  Color color_;
+  std::shared_ptr <Material> material_;
 
   public:
   Shape();
-  Shape(std::string const& name, Color const& color);
+  Shape(std::string const& name, std::shared_ptr<Material> const& color);
   ~Shape();
 };
 

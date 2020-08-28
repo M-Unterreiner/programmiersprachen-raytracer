@@ -1,17 +1,19 @@
 #include <iostream>
 #include <string>
+#include <memory>
 #include "shape.hpp"
 #include "color.hpp"
+#include "material.hpp"
 
 Shape::Shape():
   name_{"This is a empty shape!"},
-  color_{Color{30.0f, 30.0f, 30.0f}}
+  material_{}
 {
 }
 
-Shape::Shape(std::string const& name, Color const& color):
+Shape::Shape(std::string const& name, std::shared_ptr<Material> const& material):
   name_{name},
-  color_{color}
+  material_{material}
 {
 }
 
