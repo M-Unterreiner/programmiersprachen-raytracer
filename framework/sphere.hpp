@@ -4,9 +4,7 @@
 #include <glm/vec3.hpp>
 #include <glm/gtx/intersect.hpp>
 #include <math.h>
-
 #include "shape.hpp"
-#include "color.hpp"
 
 class Sphere: public Shape
 {

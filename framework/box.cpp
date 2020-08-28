@@ -1,6 +1,9 @@
 #include "box.hpp"
 
-Box::Box()
+Box::Box():
+  Shape{},
+  minimum_{0.0f, 0.0f, 0.0f},
+  maximum_{1.0f, 1.0f, 1.0f}
 {
 }
 

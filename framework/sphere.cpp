@@ -1,9 +1,10 @@
 #include "sphere.hpp"
 
-  Sphere::Sphere()
+  Sphere::Sphere():
+  Shape(),
+  center_{0, 0, -10},
+  radius_{5.0}
   {
-  center_ = {0, 0, -10};
-  radius_ = {5.0}; 
   };
 
   Sphere::~Sphere()

@@ -4,6 +4,7 @@
 #include <glm/vec3.hpp>
 
 #include "shape.hpp"
+#include "material.hpp"
 #include "color.hpp"
 
 class Box: public Shape
