@@ -10,6 +10,7 @@ class Sphere: public Shape
 {
   public:
   Sphere();
+  Sphere(glm::vec3 center, double radius, std::string name, std::shared_ptr<Material> material);
   ~Sphere();
 
   private:

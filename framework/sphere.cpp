@@ -7,6 +7,13 @@
   {
   };
 
+  Sphere::Sphere(glm::vec3 center, double radius, std::string name, std::shared_ptr<Material> material):
+  Shape(name, material),
+  center_{center},
+  radius_{radius}
+  {
+  }
+
   Sphere::~Sphere()
   {
   };
