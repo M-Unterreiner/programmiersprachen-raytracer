@@ -7,6 +7,13 @@ Box::Box():
 {
 }
 
+Box::Box(glm::vec3 minimum, glm::vec3 maximum, std::string name, std::shared_ptr<Material> material):
+  Shape{name, material},
+  minimum_{minimum},
+  maximum_{maximum}
+{
+}
+
 Box::~Box()
 {
 }

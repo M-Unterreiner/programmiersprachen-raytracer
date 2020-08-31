@@ -11,6 +11,7 @@ class Box: public Shape
 {
   public:
   Box();
+  Box(glm::vec3 minimum, glm::vec3 maximum, std::string name, std::shared_ptr<Material>);
   ~Box();
 
   private:
