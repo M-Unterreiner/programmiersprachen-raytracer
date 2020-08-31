@@ -3,6 +3,7 @@
 
 #include "../framework/box.hpp"
 #include "../framework/color.hpp"
+#include "../framework/ray.hpp"
 #include "../framework/shape.hpp"
 #include "../framework/sphere.hpp"
 
@@ -51,4 +52,9 @@ TEST_CASE ("Box")
     std::shared_ptr<Material> material{};
     Box b2{min,max, name, material};
   }
+}
+
+TEST_CASE ("Ray")
+{
+  Ray ray1{};
 }
