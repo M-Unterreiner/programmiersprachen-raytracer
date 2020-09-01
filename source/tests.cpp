@@ -6,6 +6,7 @@
 #include "../framework/ray.hpp"
 #include "../framework/shape.hpp"
 #include "../framework/sphere.hpp"
+#include "../framework/reader.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -57,4 +58,18 @@ TEST_CASE ("Box")
 TEST_CASE ("Ray")
 {
   Ray ray1{};
+}
+
+
+TEST_CASE ("Reader")
+{
+  SECTION("Default Constructor")
+  {
+    Reader new_reader;
+  }
+  SECTION("Constructor with only the filename")
+  {
+    std::string filename = "example.sdf";
+    Reader new_reader(filename);
+  }
 }
