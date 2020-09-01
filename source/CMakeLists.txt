@@ -22,6 +22,9 @@ add_executable(tests
   ../framework/color.hpp
   ../framework/shape.cpp
   ../framework/sphere.cpp
+  # Why isn't file necessary? 
+  #../framework/ray.hpp
+  ../framework/reader.cpp
   )
   
 target_link_libraries(tests
