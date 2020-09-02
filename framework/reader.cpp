@@ -17,3 +17,13 @@ Reader::~Reader()
 {
 }
 
+
+void Reader::set_File(std::shared_ptr<File> file)
+{
+  file_ = std::move(file);
+}
+
+std::string Reader::get_filename()
+{
+  return file_->filename_;
+}

@@ -14,12 +14,15 @@ class Reader
   Reader();
   Reader(std::shared_ptr<File> filename);
   ~Reader();
+  void set_File(std::shared_ptr<File> filename);
+  void read_File();
+  std::string get_filename();
+
 
   private:
-  // File file_;
-  // Add smart pointer as a file
   std::shared_ptr<File> file_;
 };
+
 
 
 

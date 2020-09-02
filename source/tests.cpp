@@ -83,6 +83,7 @@ TEST_CASE ("Reader")
   SECTION("Default Constructor")
   {
     Reader new_reader;
+    
   }
   SECTION("Constructor with only the filename")
   {
@@ -91,5 +92,13 @@ TEST_CASE ("Reader")
     */
     auto file = std::make_shared<File>();
     Reader new_reader(file);
+  }
+
+  SECTION("Set file")
+  {
+    auto file = std::make_shared<File>("simple_scene.sdf");
+    Reader new_reader{};
+    new_reader.set_File(file);
+    REQUIRE((new_reader).get_filename() == "simple_scene.sdf");
   }
 }
