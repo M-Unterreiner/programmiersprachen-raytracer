@@ -1,22 +1,24 @@
 #ifndef READER_HPP
 #define READER_HPP
 
+#include <memory>
 #include <string>
 #include <sstream>
 #include <iostream>
+#include "file.hpp"
 
 class Reader
 {
   public:  
 
   Reader();
-  Reader(std::string filename);
+  Reader(std::shared_ptr<File> filename);
   ~Reader();
 
   private:
-
-  std::string filename_;
-  std::string filedirectory_;
+  // File file_;
+  // Add smart pointer as a file
+  std::shared_ptr<File> file_;
 };
 
 

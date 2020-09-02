@@ -1,23 +1,19 @@
-#include <string>
-#include <sstream>
-#include <iostream>
+#include <memory>
 
 #include "reader.hpp"
+#include "file.hpp"
 
 Reader::Reader():
- filename_("example.sdf"),
- filedirectory_("../../ressources/")
+file_()
 {
-  std::cout << "example.sdf was loaded" << std::endl;
 }
 
-Reader::Reader(std::string filename):
-  filename_(filename),
-  filedirectory_("../../ressources/")
+Reader::Reader(std::shared_ptr<File> file):
+file_(file)
 {
-  std::cout << filename_ <<  " was loaded" << std::endl;
 }
 
 Reader::~Reader()
 {
 }
+
