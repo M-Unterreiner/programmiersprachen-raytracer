@@ -1,6 +1,9 @@
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
 
+#include <iostream>
+#include <memory>
+
 #include "../framework/box.hpp"
 #include "../framework/color.hpp"
 #include "../framework/ray.hpp"
@@ -61,6 +64,20 @@ TEST_CASE ("Ray")
 }
 
 
+TEST_CASE ("File")
+{
+  SECTION("Default constructor")
+  {
+    File file{};
+    file.print_file();
+  }
+  SECTION("Default constructor with smart pointer")
+  {
+    auto file = std::make_shared<File>();
+    file->print_file();
+  }
+}
+
 TEST_CASE ("Reader")
 {
   SECTION("Default Constructor")
@@ -69,7 +86,10 @@ TEST_CASE ("Reader")
   }
   SECTION("Constructor with only the filename")
   {
-    std::string filename = "example.sdf";
-    Reader new_reader(filename);
+    /*
+    This test will create a empty file with the  constructor
+    */
+    auto file = std::make_shared<File>();
+    Reader new_reader(file);
   }
 }
