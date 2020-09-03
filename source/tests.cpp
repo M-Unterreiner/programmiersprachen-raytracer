@@ -96,9 +96,19 @@ TEST_CASE ("Reader")
 
   SECTION("Set file")
   {
-    auto file = std::make_shared<File>("simple_scene.sdf");
+    std::cout << "#### Set File ####" << std::endl;
+    auto file = std::make_shared<File>("simple-scene.sdf");
     Reader new_reader{};
-    new_reader.set_File(file);
-    REQUIRE((new_reader).get_filename() == "simple_scene.sdf");
+    std::cout << "Set File" << std::endl;
+    new_reader.set_file(file);
+    REQUIRE((new_reader).get_filename() == "simple-scene.sdf");
+  }
+  
+  SECTION("Read a file")
+  {
+    std::cout << "Read file" << std::endl;
+    auto file = std::make_shared<File>("example.sdf", "");
+    Reader new_reader{file};
+    new_reader.read_file();
   }
 }
