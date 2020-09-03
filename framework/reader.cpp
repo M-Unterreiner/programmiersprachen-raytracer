@@ -88,3 +88,59 @@ void Reader::read_file()
     }
   }
 }
+
+Scene Reader::read_file_to_scene()
+{
+  std::string example = file_->file_;
+
+  std::ifstream filestream;
+  filestream.open(file_->file_);
+  std::string buffer;
+
+  while(std::getline(filestream, buffer))
+  {
+    std::cout << "While" << std::endl;
+
+    std::stringstream stream (buffer);
+    std::string keyword;
+
+    stream >> keyword;
+
+    if ("define" == keyword)
+    {
+      std::cout << "define" << std::endl;
+      stream >> keyword;
+
+      if ("material" == keyword)
+      {
+        void set_material(std::stringstream stream);
+      }
+
+      if ("shape" == keyword)
+      {
+        std::cout << "shape" << std::endl;
+
+        if ("box" == keyword)
+        {
+          std::cout << "box" << std::endl;
+        }
+
+        if ("sphere" == keyword)
+        {
+          std::cout << "sphere" << std::endl;
+        }
+
+        if ("composite" == keyword)
+        {
+          std::cout << "composite" << std::endl;
+        }
+      }
+
+      if ("camera" == keyword)
+      {
+        std::cout << "camera" << std::endl;
+      }
+    }
+  }
+}
+
