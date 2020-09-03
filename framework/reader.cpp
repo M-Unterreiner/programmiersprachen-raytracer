@@ -144,3 +144,17 @@ Scene Reader::read_file_to_scene()
   }
 }
 
+std::shared_ptr<Material> Reader::set_material(std::stringstream stream)
+  {
+    auto material_ptr = std::make_shared<Material> ();
+    stream >> material_ptr->name_;
+    stream >> material_ptr->ka_.r;
+    stream >> material_ptr->ka_.g;
+    stream >> material_ptr->ka_.b;
+    stream >> material_ptr->kd_.r;
+    stream >> material_ptr->kd_.g;
+    stream >> material_ptr->kd_.b;
+    stream >> material_ptr->ks_.r;
+    stream >> material_ptr->ks_.g;
+    stream >> material_ptr->ks_.b;
+  }
