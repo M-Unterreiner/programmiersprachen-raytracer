@@ -37,7 +37,7 @@ std::string Reader::get_filename()
 */
 void Reader::read_file()
 {
-  std::string example = file_->file_;
+  // std::string example = file_->file_;
 
   std::ifstream filestream;
   filestream.open(file_->file_);
@@ -89,13 +89,24 @@ void Reader::read_file()
   }
 }
 
-Scene Reader::read_file_to_scene()
+/*
+ Reads a sdf to scene
+ TODO: Somehow the file could not be readed. 
+*/
+Scene Reader::read_sdf_to_scene()
 {
-  std::string example = file_->file_;
+  std::cout << "###  read sdf to scene entered" << std::endl;
+  // std::string example = file_->file_;
 
   std::ifstream filestream;
   filestream.open(file_->file_);
-  std::string buffer;
+  if (filestream.fail())
+    {
+      std::cout << file_->file_ << " failed to load" << std::endl;
+    } else {
+
+      std::cout << file_->file_ << std::endl;
+      std::string buffer;
 
   while(std::getline(filestream, buffer))
   {
@@ -113,7 +124,10 @@ Scene Reader::read_file_to_scene()
 
       if ("material" == keyword)
       {
-        void set_material(std::stringstream stream);
+        std::cout << "material" << std::endl;
+        // std::string rest;
+        // stream.str(rest);
+        // set_material(rest);
       }
 
       if ("shape" == keyword)
@@ -141,20 +155,26 @@ Scene Reader::read_file_to_scene()
         std::cout << "camera" << std::endl;
       }
     }
+    }
   }
 }
 
-std::shared_ptr<Material> Reader::set_material(std::stringstream stream)
+std::shared_ptr<Material> Reader::set_material(std::string rest)
   {
     auto material_ptr = std::make_shared<Material> ();
-    stream >> material_ptr->name_;
+    std::stringstream stream;
+    stream.str(rest);
     stream >> material_ptr->ka_.r;
     stream >> material_ptr->ka_.g;
-    stream >> material_ptr->ka_.b;
+    stream >> material_ptr->ka_.r;
+    
     stream >> material_ptr->kd_.r;
     stream >> material_ptr->kd_.g;
-    stream >> material_ptr->kd_.b;
+    stream >> material_ptr->kd_.r;
+
     stream >> material_ptr->ks_.r;
     stream >> material_ptr->ks_.g;
-    stream >> material_ptr->ks_.b;
+    stream >> material_ptr->ks_.r;
+
+    return material_ptr;
   }

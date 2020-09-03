@@ -111,4 +111,12 @@ TEST_CASE ("Reader")
     Reader new_reader{file};
     new_reader.read_file();
   }
+
+ SECTION("Read scene in a file")
+ {
+   std::cout << "Read file" << std::endl;
+   auto file = std::make_shared<File>("simple-scene.sdf", "");
+   Reader new_reader{file};
+   new_reader.read_sdf_to_scene();
+ }
 }
