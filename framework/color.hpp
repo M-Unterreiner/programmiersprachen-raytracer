@@ -55,7 +55,7 @@ struct Color
   float g;
   float b;
 
-  void Color::print_color()
+  void print_color()
   {
     std::cout << r << " , " << g << " , " << b << " , " << std::endl;
   }
