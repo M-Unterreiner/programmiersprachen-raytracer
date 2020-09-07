@@ -20,6 +20,7 @@ class Reader
   void set_file(std::shared_ptr<File> filename);
   void read_file();
   bool open_file();
+  void close_file();
   Scene read_sdf_to_scene();
   std::string get_filename();
   std::shared_ptr<Material> set_material(std::string rest);

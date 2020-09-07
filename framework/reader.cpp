@@ -60,6 +60,11 @@ bool Reader::open_file()
   }
 }
 
+void Reader::close_file()
+{
+  filestream_.close();
+}
+
 
 /*
  read_file reads the file
@@ -114,6 +119,7 @@ void Reader::read_file()
         }
       } // if keyword define
     } // while
+    close_file();
   } // if opened  
 }
 
@@ -174,6 +180,7 @@ Scene Reader::read_sdf_to_scene()
       }
     }
   }
+  close_file();
 }
 
 std::shared_ptr<Material> Reader::set_material(std::string rest)
