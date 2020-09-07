@@ -120,16 +120,15 @@ TEST_CASE ("Reader")
   SECTION("set_material")
   {
     std::cout << "set material" << std::endl;
-    std::string new_material = "red 0 0 0 1 1 1 1 1 1 10";
+    std::string new_material = "red 1 0 0 0 0 0 0 0 0 10";
     Reader new_reader{};
 
     auto material_ptr = new_reader.set_material(new_material);
 
     REQUIRE((*material_ptr).name_ == "red");
-    REQUIRE((*material_ptr).ka_.r == 0.0f);
-    REQUIRE((*material_ptr).kd_.g == 1.0f);
-    REQUIRE((*material_ptr).ks_.b == 1.0f);
-
+    REQUIRE((*material_ptr).ka_.r == 1.0f);
+    REQUIRE((*material_ptr).kd_.g == 0.0f);
+    REQUIRE((*material_ptr).ks_.b == 0.0f);
   }
 
  // SECTION("Read scene in a file")
