@@ -8,7 +8,7 @@
 
 class Shape
 {
-  private:
+  // private:
   std::string name_;
   std::shared_ptr <Material> material_;
 

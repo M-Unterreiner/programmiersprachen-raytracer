@@ -131,6 +131,20 @@ TEST_CASE ("Reader")
     REQUIRE((*material_ptr).ks_.b == 0.0f);
   }
 
+  SECTION("set_box")
+  {
+    std::cout << "set box" << std::endl;
+    std::string new_box = "rbottom -100 -80 -200 100 80 -100 red";
+    Reader new_reader{};
+
+    auto box_ptr = new_reader.set_box(new_box);
+
+    // REQUIRE((*box_ptr).name_ == "rbottom");
+    // REQUIRE((*box_ptr).test_min_() == "-100 -80 -200");
+    // REQUIRE((*box_ptr).test_max_() == "100 80 -100");
+    // REQUIRE((*box_ptr).material_ == "red");
+  }
+
  // SECTION("Read scene in a file")
  // {
  //   std::cout << "Read file" << std::endl;
