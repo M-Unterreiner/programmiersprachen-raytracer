@@ -19,6 +19,15 @@ struct Material
     kd_.print_color();
     ks_.print_color();
   }
+
+  friend std::ostream &operator<<(std::ostream &os, Material const &m)
+  {
+    std::cout << "Name_: " << m.name_ << std::endl;
+    std::cout << "ka: " << m.ka_.r << ", " << m.ka_.g << ", " << m.ka_.b << std::endl;
+    std::cout << "kd: " << m.kd_.r << ", " << m.kd_.g << ", " << m.kd_.b << std::endl;
+    std::cout << "ks: " << m.ks_.r << ", " << m.ks_.g << ", " << m.ks_.b << std::endl;
+    return os;
+  }
 };
 
 #endif 
