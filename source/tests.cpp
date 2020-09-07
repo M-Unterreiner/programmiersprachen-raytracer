@@ -107,7 +107,7 @@ TEST_CASE ("Reader")
   SECTION("Read a file")
   {
     std::cout << "Read file" << std::endl;
-    auto file = std::make_shared<File>("example.sdf", "");
+    auto file = std::make_shared<File>("example.sdf");
     Reader new_reader{file};
     new_reader.read_file();
   }
