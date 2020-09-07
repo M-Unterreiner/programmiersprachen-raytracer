@@ -8,12 +8,12 @@
 #include "file.hpp"
 
 Reader::Reader():
-file_()
+file_to_read_()
 {
 }
 
 Reader::Reader(std::shared_ptr<File> file):
-file_(file)
+file_to_read_(file)
 {
 }
 
@@ -24,69 +24,97 @@ Reader::~Reader()
 
 void Reader::set_file(std::shared_ptr<File> file)
 {
-  file_ = std::move(file);
+  file_to_read_ = std::move(file);
 }
 
 std::string Reader::get_filename()
 {
-  return file_->filename_;
+  return file_to_read_->filename_;
 }
+
+/*
+  Tries to open file, if it failes it will return 1, if succeeded 0 
+*/
+bool Reader::open_file()
+{
+  std::cout << "### Try to open file ###" << std::endl;
+
+  filestream_.open(file_to_read_->file_);
+  if (filestream_.is_open())
+  {
+    std::cout << "File is open" << std::endl;
+    return 0;
+  } else 
+  {
+    std::cout << "Files is not open" << std::endl;
+    return 1;
+  }
+
+  if (filestream_.fail())
+  {
+    std::cout << file_to_read_->file_ << " failed to load" << std::endl;
+    return 1;
+  } else {
+    std::cout << file_to_read_->file_ << " was sucessfull opened" << std::endl;
+    return 0;
+  }
+}
+
 
 /*
  read_file reads the file
 */
 void Reader::read_file()
 {
-  // std::string example = file_->file_;
-
-  std::ifstream filestream;
-  filestream.open(file_->file_);
-  std::string buffer;
-
-  while(std::getline(filestream, buffer))
+  if (!open_file()) 
   {
-    std::cout << "While" << std::endl;
+    std::string buffer;
 
-    std::stringstream stream (buffer);
-    std::string keyword;
-
-    stream >> keyword;
-
-    if ("define" == keyword)
+    while(std::getline(filestream_, buffer))
     {
-      std::cout << "define" << std::endl;
+      std::cout << "While" << std::endl;
 
-      if ("material" == keyword)
+      std::stringstream stream (buffer);
+      std::string keyword;
+
+      stream >> keyword;
+
+      if ("define" == keyword)
       {
-        std::cout << "material" << std::endl;
-      }
+        std::cout << "define" << std::endl;
 
-      if ("shape" == keyword)
-      {
-        std::cout << "shape" << std::endl;
-
-        if ("box" == keyword)
+        if ("material" == keyword)
         {
-          std::cout << "box" << std::endl;
+          std::cout << "material" << std::endl;
         }
 
-        if ("sphere" == keyword)
+        if ("shape" == keyword)
         {
-          std::cout << "sphere" << std::endl;
+          std::cout << "shape" << std::endl;
+
+          if ("box" == keyword)
+          {
+            std::cout << "box" << std::endl;
+          }
+
+          if ("sphere" == keyword)
+          {
+            std::cout << "sphere" << std::endl;
+          }
+
+          if ("composite" == keyword)
+          {
+            std::cout << "composite" << std::endl;
+          }
         }
 
-        if ("composite" == keyword)
+        if ("camera" == keyword)
         {
-          std::cout << "composite" << std::endl;
+          std::cout << "camera" << std::endl;
         }
-      }
-
-      if ("camera" == keyword)
-      {
-        std::cout << "camera" << std::endl;
-      }
-    }
-  }
+      } // if keyword define
+    } // while
+  } // if opened  
 }
 
 /*
@@ -95,24 +123,14 @@ void Reader::read_file()
 */
 Scene Reader::read_sdf_to_scene()
 {
-  std::cout << "###  read sdf to scene entered" << std::endl;
-  // std::string example = file_->file_;
+  open_file();
+  std::string buffer;
 
-  std::ifstream filestream;
-  filestream.open(file_->file_);
-  if (filestream.fail())
-    {
-      std::cout << file_->file_ << " failed to load" << std::endl;
-    } else {
-
-      std::cout << file_->file_ << std::endl;
-      std::string buffer;
-
-  while(std::getline(filestream, buffer))
+  while(std::getline(filestream_, buffer))
   {
     std::cout << "While" << std::endl;
 
-    std::stringstream stream (buffer);
+    std::stringstream stream (buffer); 
     std::string keyword;
 
     stream >> keyword;
@@ -154,7 +172,6 @@ Scene Reader::read_sdf_to_scene()
       {
         std::cout << "camera" << std::endl;
       }
-    }
     }
   }
 }

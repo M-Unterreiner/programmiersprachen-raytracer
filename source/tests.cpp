@@ -102,21 +102,23 @@ TEST_CASE ("Reader")
     std::cout << "Set File" << std::endl;
     new_reader.set_file(file);
     REQUIRE((new_reader).get_filename() == "simple-scene.sdf");
+    REQUIRE((new_reader).open_file() == 0); // true means it failed
   }
   
   SECTION("Read a file")
   {
     std::cout << "Read file" << std::endl;
-    auto file = std::make_shared<File>("example.sdf", "");
+    auto file = std::make_shared<File>("example.sdf", "../../ressources/");
     Reader new_reader{file};
+    REQUIRE((new_reader).open_file() == 0); // true means it failed
     new_reader.read_file();
   }
 
- SECTION("Read scene in a file")
- {
-   std::cout << "Read file" << std::endl;
-   auto file = std::make_shared<File>("simple-scene.sdf", "");
-   Reader new_reader{file};
-   new_reader.read_sdf_to_scene();
- }
+ // SECTION("Read scene in a file")
+ // {
+ //   std::cout << "Read file" << std::endl;
+ //   auto file = std::make_shared<File>("simple-scene.sdf", "");
+ //   Reader new_reader{file};
+ //   new_reader.read_sdf_to_scene();
+ // }
 }
