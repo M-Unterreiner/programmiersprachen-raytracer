@@ -11,12 +11,12 @@ class Box: public Shape
 {
   public:
   Box();
-  Box(glm::vec3 minimum, glm::vec3 maximum, std::string name, std::shared_ptr<Material>);
+  Box(glm::vec3 min, glm::vec3 max, std::string name, std::shared_ptr<Material>);
   ~Box();
 
   private:
-  glm::vec3 minimum_;
-  glm::vec3 maximum_;
+  glm::vec3 min_;
+  glm::vec3 max_;
 };
 
 #endif
