@@ -139,10 +139,10 @@ TEST_CASE ("Reader")
 
     auto box_ptr = new_reader.set_box(new_box);
 
-    // REQUIRE((*box_ptr).name_ == "rbottom");
-    // REQUIRE((*box_ptr).test_min_() == "-100 -80 -200");
-    // REQUIRE((*box_ptr).test_max_() == "100 80 -100");
-    // REQUIRE((*box_ptr).material_ == "red");
+    REQUIRE(box_ptr->name_ == "rbottom");
+    REQUIRE(box_ptr->test_min_() == "-100 -80 -200");
+    REQUIRE(box_ptr->test_max_() == "100 80 -100");
+    //REQUIRE(box_ptr->material_ == "red");
   }
 
  // SECTION("Read scene in a file")

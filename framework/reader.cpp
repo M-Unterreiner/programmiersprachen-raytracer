@@ -212,15 +212,15 @@ std::shared_ptr<Box> Reader::set_box(std::string rest)
   auto box_ptr = std::make_shared<Box>();
 
   std::stringstream stream;
-  // stream.str(rest);
+  stream.str(rest);
 
-  // stream >> box_ptr->name_;
-  // stream >> box_ptr->min_.x;
-  // stream >> box_ptr->min_.y;
-  // stream >> box_ptr->min_.z;
-  // stream >> box_ptr->max_.x;
-  // stream >> box_ptr->max_.y;
-  // stream >> box_ptr->max_.z;
+  stream >> (*box_ptr).name_;
+  stream >> (*box_ptr).min_.x;
+  stream >> (*box_ptr).min_.y;
+  stream >> (*box_ptr).min_.z;
+  stream >> (*box_ptr).max_.x;
+  stream >> (*box_ptr).max_.y;
+  stream >> (*box_ptr).max_.z;
 
   // stream >> box_ptr->material;
 
