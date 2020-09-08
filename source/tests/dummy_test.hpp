@@ -1,7 +1,6 @@
 /*
 Just a dummy test for testing purposes
 */
-#pragma once
 #include <catch.hpp>
 
 #include "../../framework/box.hpp"
