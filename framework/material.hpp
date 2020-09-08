@@ -2,6 +2,7 @@
 #define MATERIAL_HPP
 
 #include <iostream>
+#include <ostream>
 #include <string>
 
 #include <color.hpp>
