@@ -17,3 +17,17 @@
   Sphere::~Sphere()
   {
   };
+
+  std::string Sphere::get_center_()
+  {
+  std::ostringstream os;
+  os << center_.x << " " << center_.y << " " << center_.z;
+  return os.str ();
+  }
+
+  std::string Sphere::get_radius_()
+  {
+    std::ostringstream os;
+    os << radius_;
+    return os.str();
+  }
