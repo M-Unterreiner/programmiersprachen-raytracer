@@ -8,12 +8,12 @@
 #include "file.hpp"
 
 Reader::Reader():
-file_to_read_()
+file_to_read_{}
 {
 }
 
 Reader::Reader(std::shared_ptr<File> file):
-file_to_read_(file)
+file_to_read_{file}
 {
 }
 
@@ -38,6 +38,7 @@ std::string Reader::get_filename()
 bool Reader::open_file()
 {
   std::cout << "### Try to open file ###" << std::endl;
+  std::cout << file_to_read_->file_ << std::endl;
 
   filestream_.open(file_to_read_->file_);
   if (filestream_.is_open())
@@ -74,6 +75,7 @@ void Reader::close_file()
 */
 void Reader::read_file()
 {
+
   if (!open_file()) 
   {
     std::string buffer;
@@ -138,8 +140,6 @@ std::shared_ptr<Scene> Reader::read_sdf_to_scene()
 
   while(std::getline(filestream_, buffer))
   {
-    std::cout << "While" << std::endl;
-
     std::stringstream stream (buffer); 
     std::string keyword;
 
@@ -147,40 +147,58 @@ std::shared_ptr<Scene> Reader::read_sdf_to_scene()
 
     if ("define" == keyword)
     {
-      std::cout << "define" << std::endl;
+      // std::cout << "define" << std::endl;
       stream >> keyword;
 
       if ("material" == keyword)
       {
-        std::cout << "material" << std::endl;
-        // std::string rest;
-        // stream.str(rest);
-        // set_material(rest);
+        //std::cout << "material" << std::endl;
+        std::string rest;
+        stream >> rest;
+        stream.str(rest);
+        set_material(rest);
       }
 
       if ("shape" == keyword)
       {
         std::cout << "shape" << std::endl;
-
+        stream >> keyword;
         if ("box" == keyword)
         {
           std::cout << "box" << std::endl;
+          std::string rest;
+
+          stream >> rest;
+          stream.str(rest);
+          set_box(rest);
         }
 
         if ("sphere" == keyword)
         {
           std::cout << "sphere" << std::endl;
+          std::string rest;
+          stream >> rest;
+          stream.str(rest);
+          set_sphere(rest);
         }
 
         if ("composite" == keyword)
         {
           std::cout << "composite" << std::endl;
+          std::string rest;
+          stream >> rest;
+          stream.str(rest);
+          // set_composite(rest);
+
         }
       }
-
       if ("camera" == keyword)
       {
         std::cout << "camera" << std::endl;
+        std::string rest;
+        stream >> rest;
+        stream.str(rest);
+        // set_camera(rest);
       }
     }
   }
