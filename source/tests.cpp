@@ -108,11 +108,7 @@ TEST_CASE ("Reader")
   SECTION("Read a file")
   {
     std::cout << "Read file" << std::endl;
-<<<<<<< HEAD
     auto file = std::make_shared<File>("example.sdf");
-=======
-    auto file = std::make_shared<File>("example.sdf", "../../ressources/");
->>>>>>> scene
     Reader new_reader{file};
     REQUIRE((new_reader).open_file() == 0); // true means it failed
     new_reader.read_file();
