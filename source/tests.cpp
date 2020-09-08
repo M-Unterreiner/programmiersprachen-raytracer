@@ -145,6 +145,21 @@ TEST_CASE ("Reader")
     //REQUIRE(box_ptr->material_ == "red");
   }
 
+  SECTION("set sphere")
+  {
+    std::cout << "set sphere" << std::endl;
+    std::string new_sphere = "bsphere 0 0 -100 50 blue";
+    Reader new_reader{};
+
+    auto sphere_ptr = new_reader.set_sphere(new_sphere);
+
+    REQUIRE(sphere_ptr->name_ == "bsphere");
+    REQUIRE(sphere_ptr->get_center_() == "0 0 -100");
+    REQUIRE(sphere_ptr->get_radius_() == "50");
+    // REQUIRE(sphere_ptr->material_ == "blue");
+  }
+
+
  // SECTION("Read scene in a file")
  // {
  //   std::cout << "Read file" << std::endl;

@@ -60,6 +60,9 @@ bool Reader::open_file()
   }
 }
 
+/*
+Closes the file, not necessary
+*/
 void Reader::close_file()
 {
   filestream_.close();
@@ -127,10 +130,11 @@ void Reader::read_file()
  Reads a sdf to scene
  TODO: Somehow the file could not be readed. 
 */
-Scene Reader::read_sdf_to_scene()
+std::shared_ptr<Scene> Reader::read_sdf_to_scene()
 {
   open_file();
   std::string buffer;
+  auto new_scene = std::make_shared<Scene>();
 
   while(std::getline(filestream_, buffer))
   {
@@ -181,6 +185,8 @@ Scene Reader::read_sdf_to_scene()
     }
   }
   close_file();
+
+  return new_scene;
 }
 
 std::shared_ptr<Material> Reader::set_material(std::string rest)
