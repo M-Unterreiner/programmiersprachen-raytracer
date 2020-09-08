@@ -20,8 +20,12 @@ add_executable(tests
   tests.cpp
   ../framework/box.cpp
   ../framework/color.hpp
+  ../framework/camera.hpp
+  ../framework/light.hpp
+  ../framework/material.hpp
   ../framework/shape.cpp
   ../framework/sphere.cpp
+
   # Why isn't file necessary? 
   #../framework/ray.hpp
   ../framework/reader.cpp
