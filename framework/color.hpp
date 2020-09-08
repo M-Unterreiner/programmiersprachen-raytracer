@@ -54,6 +54,12 @@ struct Color
   float r;
   float g;
   float b;
+
+  void print_color()
+  {
+    std::cout << r << " , " << g << " , " << b << " , " << std::endl;
+  }
 };
+
 
 #endif //#define BUW_COLOR_HPP
