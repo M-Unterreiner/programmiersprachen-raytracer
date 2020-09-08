@@ -228,3 +228,22 @@ std::shared_ptr<Box> Reader::set_box(std::string rest)
 
   return box_ptr; 
 }
+
+
+std::shared_ptr<Sphere> Reader::set_sphere(std::string rest)
+{
+  auto sphere_ptr = std::make_shared<Sphere>();
+
+  std::stringstream stream;
+  stream.str(rest);
+
+  stream >> (*sphere_ptr).name_;
+  stream >> (*sphere_ptr).center_.x;
+  stream >> (*sphere_ptr).center_.y;
+  stream >> (*sphere_ptr).center_.z;
+
+  stream >> (*sphere_ptr).radius_;
+
+  // stream >> box_ptr->material;
+  return sphere_ptr;
+}

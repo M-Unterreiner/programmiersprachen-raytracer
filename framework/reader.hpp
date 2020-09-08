@@ -27,6 +27,7 @@ class Reader
   std::string get_filename();
   std::shared_ptr<Material> set_material(std::string rest);
   std::shared_ptr<Box> set_box(std::string rest);
+  std::shared_ptr<Sphere> set_sphere(std::string rest);
 
   private:
   std::shared_ptr<File> file_to_read_;
