@@ -284,3 +284,46 @@ std::shared_ptr<Sphere> Reader::set_sphere(std::string rest)
 
   return sphere_ptr;
 }
+
+
+std::shared_ptr<Light> Reader::set_light(std::string rest)
+{
+  auto light_ptr = std::make_shared<Light>();
+
+  std::stringstream stream;
+  stream.str(rest);
+
+  std::string trash; // Ugly!
+  stream >> trash; // Ugly way to ignore the keywords define  
+  stream >> trash; // Ugly way to ignore the keywords shape  
+
+  std::cout << stream.str() << std::endl;
+
+  stream >> (*light_ptr).name_;
+  stream >> (*light_ptr).position_.x;
+  stream >> (*light_ptr).position_.y;
+  stream >> (*light_ptr).position_.z;
+
+  (*light_ptr).print_light();
+
+  return light_ptr;
+}
+
+std::shared_ptr<Camera> Reader::set_camera(std::string rest)
+{
+  // define camera eye 45.0
+  auto camera_ptr = std::make_shared<Camera>();
+
+  std::stringstream stream;
+  stream.str(rest);
+
+  std::string trash; // Ugly!
+  stream >> trash; // Ugly way to ignore the keywords define  
+  stream >> trash; // Ugly way to ignore the keywords shape  
+
+  stream >> (*camera_ptr).name_;
+  stream >> (*camera_ptr).fov_;
+  
+  (*camera_ptr).print_camera();
+  return camera_ptr;  
+}

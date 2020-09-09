@@ -10,6 +10,8 @@
 #include "file.hpp"
 #include "scene.hpp"
 #include "box.hpp"
+#include "light.hpp"
+#include "camera.hpp"
 
 
 class Reader
@@ -29,6 +31,8 @@ class Reader
   std::shared_ptr<Material> set_material(std::string rest);
   std::shared_ptr<Box> set_box(std::string rest);
   std::shared_ptr<Sphere> set_sphere(std::string rest);
+  std::shared_ptr<Light> set_light(std::string rest);
+  std::shared_ptr<Camera> set_camera(std::string rest);
 
   private:
   std::shared_ptr<File> file_to_read_;
