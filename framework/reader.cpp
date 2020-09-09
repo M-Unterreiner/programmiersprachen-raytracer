@@ -144,60 +144,48 @@ std::shared_ptr<Scene> Reader::read_sdf_to_scene()
     std::string keyword;
 
     stream >> keyword;
-
+    
     if ("define" == keyword)
     {
-      // std::cout << "define" << std::endl;
       stream >> keyword;
 
       if ("material" == keyword)
       {
-        //std::cout << "material" << std::endl;
         std::string rest;
-        stream >> rest;
-        stream.str(rest);
+        rest = stream.str();
         set_material(rest);
       }
 
       if ("shape" == keyword)
       {
-        std::cout << "shape" << std::endl;
         stream >> keyword;
         if ("box" == keyword)
         {
-          std::cout << "box" << std::endl;
           std::string rest;
 
-          stream >> rest;
-          stream.str(rest);
+          rest = stream.str();
           set_box(rest);
         }
 
         if ("sphere" == keyword)
         {
-          std::cout << "sphere" << std::endl;
           std::string rest;
-          stream >> rest;
-          stream.str(rest);
+          rest = stream.str();
           set_sphere(rest);
         }
 
         if ("composite" == keyword)
         {
-          std::cout << "composite" << std::endl;
           std::string rest;
-          stream >> rest;
-          stream.str(rest);
+          rest = stream.str();
           // set_composite(rest);
 
         }
       }
       if ("camera" == keyword)
       {
-        std::cout << "camera" << std::endl;
         std::string rest;
-        stream >> rest;
-        stream.str(rest);
+        rest = stream.str();
         // set_camera(rest);
       }
     }
@@ -209,9 +197,17 @@ std::shared_ptr<Scene> Reader::read_sdf_to_scene()
 
 std::shared_ptr<Material> Reader::set_material(std::string rest)
   {
+    
     auto material_ptr = std::make_shared<Material> ();
     std::stringstream stream;
     stream.str(rest);
+    std::cout << stream.str() << std::endl;
+
+    std::string trash; // Ugly!
+    stream >> trash; // Ugly way to ignore the keywords define and material 
+    stream >> trash; // Ugly way to ignore the keywords define and material 
+
+    std::cout << stream.str() << std::endl;
     stream >> material_ptr->name_;
 
     stream >> material_ptr->ka_.r;
@@ -237,7 +233,12 @@ std::shared_ptr<Box> Reader::set_box(std::string rest)
 
   std::stringstream stream;
   stream.str(rest);
+  std::string trash; // Ugly!
+  stream >> trash; // Ugly way to ignore the keywords define  
+  stream >> trash; // Ugly way to ignore the keywords shape  
+  stream >> trash; // Ugly way to ignore the keywords box  
 
+  std::cout << stream.str() << std::endl;
   stream >> (*box_ptr).name_;
   stream >> (*box_ptr).min_.x;
   stream >> (*box_ptr).min_.y;
@@ -250,6 +251,8 @@ std::shared_ptr<Box> Reader::set_box(std::string rest)
 
   // How to set the material?
 
+  (*box_ptr).print_box();
+
   return box_ptr; 
 }
 
@@ -261,6 +264,13 @@ std::shared_ptr<Sphere> Reader::set_sphere(std::string rest)
   std::stringstream stream;
   stream.str(rest);
 
+  std::string trash; // Ugly!
+  stream >> trash; // Ugly way to ignore the keywords define  
+  stream >> trash; // Ugly way to ignore the keywords shape  
+  stream >> trash; // Ugly way to ignore the keywords box  
+
+
+  std::cout << stream.str() << std::endl;
   stream >> (*sphere_ptr).name_;
   stream >> (*sphere_ptr).center_.x;
   stream >> (*sphere_ptr).center_.y;
@@ -269,5 +279,8 @@ std::shared_ptr<Sphere> Reader::set_sphere(std::string rest)
   stream >> (*sphere_ptr).radius_;
 
   // stream >> box_ptr->material;
+
+  sphere_ptr->print_sphere();
+
   return sphere_ptr;
 }
