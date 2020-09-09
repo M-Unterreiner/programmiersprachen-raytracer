@@ -23,6 +23,8 @@ add_executable(tests
   tests/box_test.cpp
   tests/file_test.cpp
   tests/ray_test.cpp
+  tests/camera_test.cpp
+  tests/light_test.cpp
   tests/reader_test.cpp
 
   ../framework/box.cpp
