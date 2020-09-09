@@ -29,7 +29,7 @@ class Reader
   std::shared_ptr<Scene> read_sdf_to_scene();
   std::string get_filename();
   std::shared_ptr<Material> set_material(std::string rest);
-  std::shared_ptr<Box> set_box(std::string rest);
+  std::shared_ptr<Box> set_box(std::string rest, std::shared_ptr<Scene> scene = nullptr);
   std::shared_ptr<Sphere> set_sphere(std::string rest, std::shared_ptr<Scene> scene = nullptr);
   std::shared_ptr<Light> set_light(std::string rest);
   std::shared_ptr<Camera> set_camera(std::string rest);

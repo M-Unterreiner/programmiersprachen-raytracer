@@ -230,8 +230,9 @@ std::shared_ptr<Material> Reader::set_material(std::string rest)
     return material_ptr;
   }
 
-std::shared_ptr<Box> Reader::set_box(std::string rest)
+std::shared_ptr<Box> Reader::set_box(std::string rest, std::shared_ptr<Scene> scene)
 {
+  std::string findkey;
   auto box_ptr = std::make_shared<Box>();
 
   std::stringstream stream;
@@ -249,10 +250,13 @@ std::shared_ptr<Box> Reader::set_box(std::string rest)
   stream >> (*box_ptr).max_.x;
   stream >> (*box_ptr).max_.y;
   stream >> (*box_ptr).max_.z;
+  stream >> findkey; 
 
-  // stream >> box_ptr->material;
-
-  // How to set the material?
+  if(scene)
+  {
+  box_ptr->material_ = find_material(findkey, (*scene).material_map_);
+  ((*scene).shape_vector).push_back(box_ptr);
+  }
 
   (*box_ptr).print_box();
 
@@ -291,7 +295,6 @@ std::shared_ptr<Sphere> Reader::set_sphere(std::string rest, std::shared_ptr<Sce
   sphere_ptr->material_ = find_material(findkey, (*scene).material_map_);
   ((*scene).shape_vector).push_back(sphere_ptr);
   }
-  // stream >> box_ptr->material;
 
   sphere_ptr->print_sphere();
 
@@ -344,6 +347,9 @@ std::shared_ptr<Camera> Reader::set_camera(std::string rest)
   return camera_ptr;  
 }
 
+/*
+Search with an iterator trough the material_map
+*/
 std::shared_ptr<Material> Reader::find_material(std::string findkey, std::map<std::string, std::shared_ptr<Material>> const &material_map)
 {
   auto iterator = material_map.find(findkey);
