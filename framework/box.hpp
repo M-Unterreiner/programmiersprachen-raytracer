@@ -17,6 +17,7 @@ class Box: public Shape
 
   std::string test_min_();
   std::string test_max_();
+  void print_box();
 
   // private:
   glm::vec3 min_;

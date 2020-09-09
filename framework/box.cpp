@@ -32,3 +32,12 @@ std::string Box::test_max_()
   os << max_.x << " " << max_.y << " " << max_.z;
   return os.str ();
 }
+
+
+  void Box::print_box()
+  {
+    std::cout << name_ << "\n";
+    std::cout << test_min_() << "\n";
+    std::cout << test_max_() << "\n";
+  }
+  
