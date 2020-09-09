@@ -30,16 +30,16 @@ class Reader
   std::string get_filename();
   std::shared_ptr<Material> set_material(std::string rest);
   std::shared_ptr<Box> set_box(std::string rest);
-  std::shared_ptr<Sphere> set_sphere(std::string rest);
+  std::shared_ptr<Sphere> set_sphere(std::string rest, std::shared_ptr<Scene> scene = nullptr);
   std::shared_ptr<Light> set_light(std::string rest);
   std::shared_ptr<Camera> set_camera(std::string rest);
 
-  private:
+ 
+  private : 
+  std::shared_ptr<Material> find_material(std::string findkey, std::map<std::string, std::shared_ptr<Material>> const &material_map); 
+
   std::shared_ptr<File> file_to_read_;
   std::ifstream filestream_;
-};
-
-
-
+  };
 
 #endif // READER_HPP

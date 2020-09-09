@@ -136,9 +136,10 @@ void Reader::read_file()
 */
 std::shared_ptr<Scene> Reader::read_sdf_to_scene()
 {
-  open_file();
   std::string buffer;
   auto new_scene = std::make_shared<Scene>();
+
+  open_file();
 
   while(std::getline(filestream_, buffer))
   {
@@ -173,7 +174,7 @@ std::shared_ptr<Scene> Reader::read_sdf_to_scene()
         {
           std::string rest;
           rest = stream.str();
-          set_sphere(rest);
+          set_sphere(rest, new_scene);
         }
 
         if ("composite" == keyword)
@@ -258,12 +259,15 @@ std::shared_ptr<Box> Reader::set_box(std::string rest)
   return box_ptr; 
 }
 
-
-std::shared_ptr<Sphere> Reader::set_sphere(std::string rest)
+/*
+Returns a pointer to a Sphere or added it a scene
+*/
+std::shared_ptr<Sphere> Reader::set_sphere(std::string rest, std::shared_ptr<Scene> scene)
 {
   auto sphere_ptr = std::make_shared<Sphere>();
 
   std::stringstream stream;
+  std::string findkey;
   stream.str(rest);
 
   std::string trash; // Ugly!
@@ -280,6 +284,13 @@ std::shared_ptr<Sphere> Reader::set_sphere(std::string rest)
 
   stream >> (*sphere_ptr).radius_;
 
+  stream >> findkey;
+  
+  if(scene)
+  {
+  sphere_ptr->material_ = find_material(findkey, (*scene).material_map_);
+  ((*scene).shape_vector).push_back(sphere_ptr);
+  }
   // stream >> box_ptr->material;
 
   sphere_ptr->print_sphere();
@@ -331,4 +342,21 @@ std::shared_ptr<Camera> Reader::set_camera(std::string rest)
   
   (*camera_ptr).print_camera();
   return camera_ptr;  
+}
+
+std::shared_ptr<Material> Reader::find_material(std::string findkey, std::map<std::string, std::shared_ptr<Material>> const &material_map)
+{
+  auto iterator = material_map.find(findkey);
+
+  if (iterator != material_map.end())
+  {
+    std::cout << "Material " << findkey << " exists." << std::endl;
+    return iterator->second;
+    //first ist key, second ist value
+  }
+  else
+  {
+    std::cout << "Material " << findkey << " could not be found" << std::endl;
+    return nullptr;
+  }
 }
