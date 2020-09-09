@@ -7,14 +7,15 @@
 
 struct Camera
 {
-  std::string name_;
-  double fov_;
-  glm::vec3 position_;
+  std::string name_ = {"Default camera"};
+  double fov_ = {45};
+  glm::vec3 position_= {0,0,0};
   glm::vec3 direction_; 
 
   void print_camera()
   {
     std::cout << name_ << std::endl;
+    std::cout << "x: " << position_.x << " y: " << position_.y << " z: " << position_.z << std::endl;
     std::cout << fov_  << std::endl;
   }
 

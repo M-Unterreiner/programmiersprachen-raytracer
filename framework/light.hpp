@@ -15,6 +15,7 @@ struct Light
   void print_light()
   {
     std::cout << name_ << std::endl;
+    std::cout << "x: " << position_.x << " y: "<< position_.y << " z: " << position_.z << std::endl;
     std::cout << "r: " << color_.r << " g: "<< color_.g << " b: " << color_.b << std::endl;
   }
 
