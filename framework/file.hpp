@@ -14,7 +14,7 @@ struct File
 
 File():
 filename_{"example.sdf"},
-filedirectory_{"../../ressources/"},
+filedirectory_{"/home/martin/tmp/ressources/"},
 file_{filedirectory_ + filename_}
 {
   std::cout << "filename and directory wasn't set. " << file_ << " was used" << std::endl;
@@ -23,7 +23,7 @@ file_{filedirectory_ + filename_}
 // TODO: If file doesn't exist it should use a fallback solution
 File(std::string filename):
 filename_(filename),
-filedirectory_{"../../ressources/"}
+filedirectory_{"/home/martin/tmp/ressources/"}
 {
   file_ = filedirectory_ + filename_;
   std::cout << "file directory wasn't set. " << file_ << " was used" << std::endl;

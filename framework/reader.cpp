@@ -40,23 +40,25 @@ bool Reader::open_file()
   std::cout << "### Try to open file ###" << std::endl;
   std::cout << file_to_read_->file_ << std::endl;
 
+
+
   filestream_.open(file_to_read_->file_);
   if (filestream_.is_open())
   {
-    std::cout << "File is open" << std::endl;
+    std::cout << "File was opened" << std::endl;
     return 0;
   } else 
   {
-    std::cout << "Files is not open" << std::endl;
+    std::cout << "Error: Files is not open" << std::endl;
     return 1;
   }
 
   if (filestream_.fail())
   {
-    std::cout << file_to_read_->file_ << " failed to load" << std::endl;
+    std::cout << file_to_read_->file_ << "Error: failed to load File" << std::endl;
     return 1;
   } else {
-    std::cout << file_to_read_->file_ << " was sucessfull opened" << std::endl;
+    std::cout << file_to_read_->file_ << " was sucessfully opened" << std::endl;
     return 0;
   }
 }

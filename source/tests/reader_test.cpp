@@ -26,7 +26,7 @@ TEST_CASE ("Reader")
   SECTION("Set file")
   {
     std::cout << "#### Set File ####" << std::endl;
-    auto file = std::make_shared<File>("simple-scene.sdf","/ressources/");
+    auto file = std::make_shared<File>("simple-scene.sdf");
     Reader new_reader{};
     std::cout << "Set File" << std::endl;
     new_reader.set_file(file);
@@ -38,7 +38,7 @@ TEST_CASE ("Reader")
   SECTION("Open a file")
   {
     std::cout << "Open a file" << std::endl;
-    auto file = std::make_shared<File>("example.sdf","/ressources/");
+    auto file = std::make_shared<File>("example.sdf");
 
     Reader new_reader(file);
 
@@ -96,7 +96,7 @@ TEST_CASE ("Reader")
  SECTION("Read scene in a file")
  {
    std::cout << "Read file" << std::endl;
-   auto file = std::make_shared<File>("simple-scene.sdf", "/ressources/");
+   auto file = std::make_shared<File>("simple-scene.sdf");
    Reader new_reader{file};
    new_reader.read_sdf_to_scene();
  }
