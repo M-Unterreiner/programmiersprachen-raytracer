@@ -298,11 +298,14 @@ std::shared_ptr<Light> Reader::set_light(std::string rest)
   stream >> trash; // Ugly way to ignore the keywords shape  
 
   std::cout << stream.str() << std::endl;
-
+  // define light sun 1000 700 0 .2 .2 .2
   stream >> (*light_ptr).name_;
   stream >> (*light_ptr).position_.x;
   stream >> (*light_ptr).position_.y;
   stream >> (*light_ptr).position_.z;
+  stream >> (*light_ptr).color_.r; 
+  stream >> (*light_ptr).color_.g; 
+  stream >> (*light_ptr).color_.b; 
 
   (*light_ptr).print_light();
 
