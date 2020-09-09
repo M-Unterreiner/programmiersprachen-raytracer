@@ -31,3 +31,11 @@
     os << radius_;
     return os.str();
   }
+
+  void Sphere::print_sphere()
+  {
+    std::cout << name_ << "\n";
+    std::cout << get_center_() << "\n";
+    std::cout << get_radius_() << "\n";
+  }
+  

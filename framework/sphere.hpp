@@ -18,6 +18,7 @@ class Sphere: public Shape
   ~Sphere();
   std::string get_center_();
   std::string get_radius_();
+  void print_sphere();
   // private:
   glm::vec3 center_;
   double radius_;
