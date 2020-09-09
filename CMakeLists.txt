@@ -73,3 +73,10 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/framework)
 add_subdirectory(framework)
 
 add_subdirectory(source)
+
+############################
+# Copy sdf files
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/ressources/example.sdf DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/source/ressources/)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/ressources/adv-scene.sdf DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/source/ressources/)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/ressources/simple-scene.sdf DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/source/ressources/)
+
